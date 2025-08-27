@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        #dataContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .user-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .user-card:hover {
+            transform: scale(1.05);
+        }
+        .user-card strong {
+            color: #007bff;
+        }
+        #loadMoreBtn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background: mintcream;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fetch Data</h1>
+    <div id="dataContainer"></div>
+    <button id="loadMoreBtn"><a href="./index.html">HOME</a></button>
+    <button id="loadMoreBtn"><a href="./index2.html">API</a></button>
+    <button id="loadMoreBtn"><a href="./index3.html">API</a></button>
+
+
+    <script>
+        fetch("https://gorest.co.in/public/v2/users")
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('dataContainer');
+                data.forEach(user => {
+                    const userDiv = document.createElement('div');
+                    userDiv.classList.add("user-card");
+                    userDiv.innerHTML = `
+                        <p><strong>Name:</strong> ${user.name}</p>
+                        <p><strong>Email:</strong> ${user.email}</p>
+                    `;
+                    container.appendChild(userDiv);
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+</body>
+</html>
