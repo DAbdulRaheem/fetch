@@ -35,7 +35,7 @@
             color: #007bff;
         }
         #loadMoreBtn {
-            display: block;
+            display: inline;
             margin: 20px auto;
             padding: 10px 20px;
             background: mintcream;
@@ -50,10 +50,11 @@
 <body>
     <h1>API Data</h1>
     <div id="dataContainer"></div>
-    <button id="loadMoreBtn"><a href="./index.html"> Home </a></button>
-    <button id="loadMoreBtn"><a href="./index2.html"> API </a></button>
-    <button id="loadMoreBtn"><a href="./index3.html"> UID </a></button>
-
+    <div style="margin-top: 20px;">
+        <a id="loadMoreBtn" href="./index.html" style="text-decoration:none; color:inherit;">HOME</a>
+        <a id="loadMoreBtn" href="./index2.html" style="text-decoration:none; color:inherit;">API</a>
+        <a id="loadMoreBtn" href="./index3.html" style="text-decoration:none; color:inherit;">UID</a>
+    </div>
     <script>
         fetch("https://fakestoreapi.com/products")
             .then(response => response.json())
